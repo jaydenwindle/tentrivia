@@ -11,23 +11,25 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.container}>
-      <SafeAreaView style={{ flex: 1 }}>
+      <View style={{ flex: 1 }}>
         <WelcomeHeading />
-        <Animatable.View
-          useNativeDriver
-          duration={300}
-          delay={300}
-          animation="fadeIn"
-        >
-          <Button
-            onPress={() => {
-              navigation.navigate('Quiz')
-            }}
+        <SafeAreaView>
+          <Animatable.View
+            useNativeDriver
+            duration={300}
+            delay={300}
+            animation="fadeIn"
           >
-            Begin
-          </Button>
-        </Animatable.View>
-      </SafeAreaView>
+            <Button
+              onPress={() => {
+                navigation.navigate('Quiz')
+              }}
+            >
+              Begin
+            </Button>
+          </Animatable.View>
+        </SafeAreaView>
+      </View>
     </View>
   )
 }

@@ -1,10 +1,13 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
-import { Card, Subheading } from 'react-native-paper'
+import { Card, Subheading, Text } from 'react-native-paper'
 
-const QuestionCard = ({ questionText }) => (
+const QuestionCard = ({ text, questionIndex, questionCount }) => (
   <Card style={styles.surface}>
-    <Subheading style={styles.text}>{questionText}</Subheading>
+    <Subheading style={styles.questionText}>{text}</Subheading>
+    <Text style={styles.countText}>
+      {questionIndex + 1} of {questionCount}
+    </Text>
   </Card>
 )
 
@@ -13,11 +16,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     elevation: 4,
-    paddingHorizontal: 16,
-    paddingVertical: 36,
+    padding: 24,
   },
-  text: {
+  questionText: {
     textAlign: 'center',
+  },
+  countText: {
+    color: '#aaa',
+    textAlign: 'center',
+    marginTop: 20,
   },
 })
 

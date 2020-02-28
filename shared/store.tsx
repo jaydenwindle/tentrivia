@@ -19,6 +19,7 @@ type Store = {
   questions: [Question?]
   answers: [string?]
   score: number
+  questionCount: number
   fetchQuestions: () => Promise<void>
 }
 
@@ -27,6 +28,9 @@ const StoreProvider = ({ children }) => {
     questionsLoading: false,
     questions: [],
     answers: [],
+    get questionCount() {
+      return store.questions.length
+    },
     get score() {
       return store.questions.reduce((score, value, index) => {
         if (index > store.answers.length - 1) {
