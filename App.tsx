@@ -6,6 +6,7 @@ import NavigationProvider, { Route } from "./shared/navigation";
 import StoreProvider from "./shared/store";
 import HomeScreen from "./screens/Home";
 import QuizScreen from "./screens/Quiz";
+import ResultsScreen from "./screens/Results";
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
         <NavigationProvider>
           <Route name="Home" component={HomeScreen} />
           <Route name="Quiz" component={QuizScreen} />
+          <Route name="Results" component={ResultsScreen} />
         </NavigationProvider>
       </PaperProvider>
     </StoreProvider>
