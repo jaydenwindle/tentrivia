@@ -4,7 +4,7 @@ import { Title, Subheading } from 'react-native-paper'
 
 import theme from '../shared/theme'
 
-import { useNavigation } from '../shared/navigation'
+import { useNavigation } from '../shared/navigator'
 
 import Button from '../components/Button'
 

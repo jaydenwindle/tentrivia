@@ -6,7 +6,7 @@ import { Title, Subheading, ActivityIndicator } from 'react-native-paper'
 
 import theme from '../shared/theme'
 import { useStore } from '../shared/store'
-import { useNavigation } from '../shared/navigation'
+import { useNavigation } from '../shared/navigator'
 import Button from '../components/Button'
 
 const entities = new AllHtmlEntities()

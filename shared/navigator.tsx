@@ -3,13 +3,15 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { useNavigation as useReactNavigation } from '@react-navigation/native'
 
+import screens from './screens'
+
 const Stack = createStackNavigator()
 
 export const useNavigation = () => {
   return useReactNavigation()
 }
 
-export default function NavigationProvider({ children }) {
+export default function Navigator() {
   return (
     <NavigationContainer>
       <Stack.Navigator
@@ -17,10 +19,11 @@ export default function NavigationProvider({ children }) {
           headerShown: false,
         }}
       >
-        {children}
+        {screens.map(screen => {
+          const { name, component } = screen
+          return <Stack.Screen key={name} name={name} component={component} />
+        })}
       </Stack.Navigator>
     </NavigationContainer>
   )
 }
-
-export const Route = Stack.Screen
