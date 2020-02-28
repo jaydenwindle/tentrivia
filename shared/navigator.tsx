@@ -1,8 +1,9 @@
-import React from 'react'
-import { NavigationContainer } from '@react-navigation/native'
+import {
+  NavigationContainer,
+  useNavigation as useReactNavigation,
+} from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
-import { useNavigation as useReactNavigation } from '@react-navigation/native'
-
+import React from 'react'
 import screens from './screens'
 
 const Stack = createStackNavigator()

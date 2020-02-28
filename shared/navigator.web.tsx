@@ -1,29 +1,7 @@
-import React, { createContext, useContext, useCallback } from 'react'
-import {
-  BrowserRouter as Router,
-  Switch,
-  useHistory,
-  Route,
-} from 'react-router-dom'
-
+import React from 'react'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import NavigationContext from './context/navigation'
 import screens from './screens'
-
-const NavigationContext = createContext({})
-
-export const useNavigation = () => {
-  const history = useHistory()
-  const navigationContext = useContext(NavigationContext)
-
-  return {
-    navigate: name => {
-      const path = navigationContext[name]
-      console.log(navigationContext, path, name)
-      if (path) {
-        history.push(path)
-      }
-    },
-  }
-}
 
 export function NavigationProvider({ children }) {
   const paths = {}

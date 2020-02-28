@@ -5,7 +5,7 @@ import { useObserver } from 'mobx-react-lite'
 
 import { useStore } from '../shared/store'
 import theme from '../shared/theme'
-import { useNavigation } from '../shared/navigator'
+import useNavigation from '../shared/hooks/useNavigation'
 
 import Button from '../components/Button'
 
