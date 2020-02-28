@@ -1,3 +1,7 @@
 import { createContext } from 'react'
 
-export default createContext({})
+export type NavigationContextType = {
+  [key: string]: string
+}
+
+export default createContext<NavigationContextType>({})

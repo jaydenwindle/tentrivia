@@ -1,13 +1,20 @@
-import React from 'react'
+import React, { FunctionComponent, ReactNode } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import NavigationContext from './context/navigation'
+import NavigationContext, { NavigationContextType } from './context/navigation'
 import screens from './screens'
 
-export function NavigationProvider({ children }) {
-  const paths = {}
-  children.map(child => {
-    paths[child.props.name] = child.props.path
+export const NavigationProvider: FunctionComponent = ({ children }) => {
+  const paths: NavigationContextType = {}
+  if (!children || !Array.isArray(children)) {
+    return null
+  }
+
+  children.forEach((child: ReactNode): void => {
+    if (child instanceof Route) {
+      paths[child.props.name] = child.props.path
+    }
   })
+
   return (
     <NavigationContext.Provider value={paths}>
       <Router>

@@ -1,10 +1,15 @@
-import React from "react";
-import { StyleSheet } from "react-native";
-import { Button as PaperButton } from "react-native-paper";
+import React, { FunctionComponent, ReactText } from 'react'
+import { StyleSheet } from 'react-native'
+import { Button as PaperButton } from 'react-native-paper'
 
-import theme from "../shared/theme";
+import theme from '../shared/theme'
 
-export default function Button({ onPress, children, ...props }) {
+type Props = {
+  onPress: () => void
+  children: ReactText
+}
+
+const Button: FunctionComponent<Props> = ({ onPress, children, ...props }) => {
   return (
     <PaperButton
       mode="contained"
@@ -15,27 +20,29 @@ export default function Button({ onPress, children, ...props }) {
     >
       {children}
     </PaperButton>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
     backgroundColor: theme.colors.primary,
-    padding: 16
+    padding: 16,
   },
   headingText: {
-    color: "#fff",
-    textAlign: "center",
-    opacity: 0.9
+    color: '#fff',
+    textAlign: 'center',
+    opacity: 0.9,
   },
   buttonText: {
-    color: theme.colors.primary
+    color: theme.colors.primary,
   },
   buttonContent: {
     paddingHorizontal: 15,
-    paddingVertical: 7
-  }
-});
+    paddingVertical: 7,
+  },
+})
+
+export default Button

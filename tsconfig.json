@@ -1,9 +1,14 @@
 {
   "compilerOptions": {
+    "strict": true,
     "target": "es5",
     "allowSyntheticDefaultImports": true,
     "jsx": "react-native",
     "lib": ["dom", "esnext"],
+    "baseUrl": ".",
+    "paths": {
+      "react-native-confetti": ["./types/react-native-confetti.d.ts"]
+    },
     "moduleResolution": "node",
     "noEmit": true,
     "skipLibCheck": true,

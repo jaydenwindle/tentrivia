@@ -19,21 +19,24 @@ export default function QuizScreen() {
   const navigation = useNavigation()
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0)
 
-  const titleRef = useRef<Animatable.View | null>(null)
-  const questionRef = useRef<Animatable.View | null>(null)
+  const titleRef = useRef<Animatable.View>(null)
+  const questionRef = useRef<Animatable.View>(null)
 
   useEffect(() => {
     store.fetchQuestions()
   }, [])
 
   const animateNextQuestion = () => {
-    if (!titleRef.current || !questionRef.current) {
+    if (!titleRef.current?.fadeOutUp || !questionRef.current?.fadeOutDown) {
       return
     }
 
     titleRef.current.fadeOutUp()
     questionRef.current.fadeOutDown()
     setTimeout(() => {
+      if (!titleRef.current?.fadeInDown || !questionRef.current?.fadeInUp) {
+        return
+      }
       titleRef.current.fadeInDown()
       questionRef.current.fadeInUp()
     }, 300)
@@ -69,6 +72,18 @@ export default function QuizScreen() {
     return (
       <View style={styles.container}>
         <SafeAreaView style={styles.safeArea}>
+          {/* 
+              Note: a bug in the latest react-native-animatable version causes
+              Animatable.View ref assignment to fail typescript's type checks.
+              
+              See issue: https://github.com/oblador/react-native-animatable/issues/218
+
+              I've fixed this issue on my own fork:
+              https://github.com/jaydenwindle/react-native-animatable
+
+              TODO: Return to using latest version of react-native-animatable
+              once #218 is fixed.
+          */}
           <Animatable.View
             ref={titleRef}
             useNativeDriver

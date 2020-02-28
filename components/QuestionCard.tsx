@@ -1,8 +1,18 @@
-import React from 'react'
+import React, { FunctionComponent } from 'react'
 import { StyleSheet } from 'react-native'
 import { Card, Subheading, Text } from 'react-native-paper'
 
-const QuestionCard = ({ text, questionIndex, questionCount }) => (
+type Props = {
+  text: string
+  questionIndex: number
+  questionCount: number
+}
+
+const QuestionCard: FunctionComponent<Props> = ({
+  text,
+  questionIndex,
+  questionCount,
+}) => (
   <Card style={styles.surface}>
     <Subheading style={styles.questionText}>{text}</Subheading>
     <Text style={styles.countText}>

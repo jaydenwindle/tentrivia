@@ -1,8 +1,20 @@
-import React from 'react'
+import React, { FunctionComponent } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { Card, Subheading, Text } from 'react-native-paper'
 
-const GradedQuestionCard = ({ text, category, correctAnswer, givenAnswer }) => {
+type Props = {
+  text: string
+  category: string
+  correctAnswer: string
+  givenAnswer: string
+}
+
+const GradedQuestionCard: FunctionComponent<Props> = ({
+  text,
+  category,
+  correctAnswer,
+  givenAnswer,
+}) => {
   const isCorrect = givenAnswer === correctAnswer
   return (
     <Card style={styles.card}>

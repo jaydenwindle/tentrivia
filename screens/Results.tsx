@@ -1,17 +1,14 @@
-import React, { useRef, useEffect } from 'react'
-import { StyleSheet, View, SafeAreaView, FlatList } from 'react-native'
-import { Title, Subheading } from 'react-native-paper'
-import { useObserver } from 'mobx-react-lite'
 import { AllHtmlEntities } from 'html-entities'
-
-import { useStore } from '../shared/store'
-import theme from '../shared/theme'
-import useNavigation from '../shared/hooks/useNavigation'
-
+import { useObserver } from 'mobx-react-lite'
+import React, { useEffect, useRef, Component } from 'react'
+import { FlatList, SafeAreaView, StyleSheet, View } from 'react-native'
+import Confetti from 'react-native-confetti'
+import { Subheading, Title } from 'react-native-paper'
 import Button from '../components/Button'
 import GradedQuestionCard from '../components/GradedQuestionCard'
-
-import Confetti from 'react-native-confetti'
+import useNavigation from '../shared/hooks/useNavigation'
+import { useStore } from '../shared/store'
+import theme from '../shared/theme'
 
 const entities = new AllHtmlEntities()
 
@@ -56,9 +53,9 @@ export default function ResultsScreen() {
               <GradedQuestionCard
                 key={index.toString()}
                 text={entities.decode(item.question)}
-                correctAnswer={item.correct_answer}
+                correctAnswer={item?.correct_answer}
                 givenAnswer={store.answers[index]}
-                category={item.category}
+                category={item?.category}
               />
             </View>
           )}

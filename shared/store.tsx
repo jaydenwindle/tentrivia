@@ -1,8 +1,15 @@
-import React, { useContext, createContext } from 'react'
+import React, { useContext, createContext, FunctionComponent } from 'react'
 import { useLocalStore } from 'mobx-react-lite'
 import { toJS } from 'mobx'
 
-export const StoreContext = createContext<Store | null>(null)
+export const StoreContext = createContext<Store>({
+  questionsLoading: false,
+  questions: [],
+  answers: [],
+  score: 0,
+  questionCount: 0,
+  fetchQuestions: async () => {},
+})
 
 export const useStore = () => {
   return useContext(StoreContext)
@@ -16,22 +23,22 @@ type Question = {
 
 type Store = {
   questionsLoading: boolean
-  questions: [Question?]
-  answers: [string?]
+  questions: Question[]
+  answers: string[]
   score: number
   questionCount: number
   fetchQuestions: () => Promise<void>
 }
 
-const StoreProvider = ({ children }) => {
+const StoreProvider: FunctionComponent = ({ children }) => {
   const store = useLocalStore<Store>(() => ({
     questionsLoading: false,
     questions: [],
     answers: [],
-    get questionCount() {
+    get questionCount(): number {
       return store.questions.length
     },
-    get score() {
+    get score(): number {
       return store.questions.reduce((score, value, index) => {
         if (index > store.answers.length - 1) {
           return score
@@ -40,7 +47,7 @@ const StoreProvider = ({ children }) => {
         const question = toJS(value)
         const answer = store.answers[index]
 
-        if (answer !== question.correct_answer) {
+        if (answer !== question?.correct_answer) {
           return score
         }
 
