@@ -1,4 +1,4 @@
-import { DefaultTheme } from 'react-native-paper';
+import { DefaultTheme } from 'react-native-paper'
 
 export default {
   ...DefaultTheme,
@@ -8,4 +8,4 @@ export default {
     primary: '#613DC1',
     accent: '#f1c40f',
   },
-};
+}

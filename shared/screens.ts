@@ -6,16 +6,16 @@ export default [
   {
     component: HomeScreen,
     name: 'Home',
-    path: '/'
+    path: '/',
   },
   {
     component: QuizScreen,
     name: 'Quiz',
-    path: '/quiz'
+    path: '/quiz',
   },
   {
     component: ResultsScreen,
     name: 'Results',
-    path: '/results'
+    path: '/results',
   },
 ]

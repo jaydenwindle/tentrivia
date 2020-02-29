@@ -12,7 +12,7 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.container}>
-      <View style={{ flex: 1 }}>
+      <View style={styles.innerContainer}>
         <WelcomeHeading />
         <AnimatableView delay={ANIMATION_DURATION} animation="fadeIn">
           <Button
@@ -35,5 +35,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: theme.colors.primary,
     padding: 16,
+  },
+  innerContainer: {
+    flex: 1,
   },
 })

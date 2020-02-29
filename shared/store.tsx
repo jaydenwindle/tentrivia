@@ -40,6 +40,7 @@ const StoreProvider: FunctionComponent = ({ children }) => {
     },
     get score(): number {
       return store.questions.reduce((score, value, index) => {
+        // Don't count unanswered questions
         if (index > store.answers.length - 1) {
           return score
         }
