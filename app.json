@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "TenTrivia",
-    "description": "A simple and fun trivia app.",
+    "description": "A simple, fun triva app",
     "slug": "tentrivia",
     "privacy": "public",
     "sdkVersion": "36.0.0",
