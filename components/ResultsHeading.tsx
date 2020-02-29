@@ -15,7 +15,7 @@ const WelcomeTitle: FunctionComponent<Props> = ({ score, questionCount }) => (
     <View style={styles.resultsContainer}>
       <Title style={styles.resultsTitle}>You Scored</Title>
       <Subheading style={styles.resultsTally}>
-        Score: {score} / {questionCount}
+        {score} / {questionCount}
       </Subheading>
     </View>
   </SafeAreaView>
