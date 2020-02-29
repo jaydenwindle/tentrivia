@@ -1,9 +1,6 @@
 import React, { FunctionComponent } from 'react'
-import { StyleSheet, Image, SafeAreaView, View } from 'react-native'
+import { StyleSheet, SafeAreaView, View } from 'react-native'
 import { Subheading, Title } from 'react-native-paper'
-
-import theme from '../shared/theme'
-import AnimatableView from '../components/AnimatableView'
 
 type Props = {
   score: number
