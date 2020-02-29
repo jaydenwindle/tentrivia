@@ -6,4 +6,4 @@
 ### [Download with Expo](https://exp.host/@jaydenwindle/tentrivia)
 
 
-Logo icon created by [Rémy Médard](https://thenounproject.com/catalarem) from the Noun Project.
+*Logo icon created by [Rémy Médard](https://thenounproject.com/catalarem) from the Noun Project.*
