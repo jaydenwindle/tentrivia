@@ -13,7 +13,7 @@ type Props = {
 const WelcomeTitle: FunctionComponent<Props> = ({ score, questionCount }) => (
   <SafeAreaView>
     <View style={styles.resultsContainer}>
-      <Title style={styles.resultsTitle}>Results</Title>
+      <Title style={styles.resultsTitle}>You Scored</Title>
       <Subheading style={styles.resultsTally}>
         Score: {score} / {questionCount}
       </Subheading>
