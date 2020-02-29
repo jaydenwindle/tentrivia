@@ -2,5 +2,5 @@
 
 ![](/cover.png)
 
-### [Try Now! (Web Version)]()
+### [Try Now! (Web Version)](https://tentrivia.netlify.com/)
 ### [Download with Expo](https://exp.host/@jaydenwindle/tentrivia)
