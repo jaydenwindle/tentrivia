@@ -3,4 +3,4 @@
 ![](/cover.png)
 
 ### [Try Now! (Web Version)]()
-### [Download from Expo]()
+### [Download with Expo](https://exp.host/@jaydenwindle/tentrivia)
