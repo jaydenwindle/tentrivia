@@ -15,6 +15,7 @@ const useNavigation = () => {
   return {
     navigate: (name: string) => {
       const path = navigationContext[name]
+      console.log(path)
       if (path) {
         history.push(path)
       }

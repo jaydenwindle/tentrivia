@@ -1,24 +1,18 @@
 import React from 'react'
 import { StyleSheet, Image } from 'react-native'
-import * as Animatable from 'react-native-animatable'
 import { Subheading, Title } from 'react-native-paper'
 
-import { ANIMATION_DURATION } from '../shared/constants'
+import AnimatableView from '../components/AnimatableView'
 
 const WelcomeTitle = () => (
-  <Animatable.View
-    useNativeDriver
-    animation="fadeInUp"
-    duration={ANIMATION_DURATION}
-    style={styles.animatedContainer}
-  >
+  <AnimatableView animation="fadeInUp" style={styles.animatedContainer}>
     <Image source={require('../assets/logo-white.png')} style={styles.logo} />
     <Title style={styles.title}>Welcome to the Triva Challenge</Title>
     <Subheading style={styles.subtitle}>
       You will be presented with 10 True or False questions.
     </Subheading>
     <Subheading style={styles.subtitle}>Can you score 100%?</Subheading>
-  </Animatable.View>
+  </AnimatableView>
 )
 
 const styles = StyleSheet.create({

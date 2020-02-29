@@ -26,6 +26,7 @@ export default function QuizScreen() {
     store.fetchQuestions()
   }, [])
 
+  // Animates the current question out and the next quesiton in.
   const animateNextQuestion = () => {
     if (!titleRef.current?.fadeOutUp || !questionRef.current?.fadeOutDown) {
       return
@@ -42,6 +43,9 @@ export default function QuizScreen() {
     }, ANIMATION_DURATION)
   }
 
+  // Stores user's answer and triggers transition to next question.
+  // End game and navigate to results if the user has answered the final
+  // question.
   const answerQuestion = useCallback(
     answer => {
       store.answers[currentQuestionIndex] = answer
@@ -60,6 +64,7 @@ export default function QuizScreen() {
   )
 
   return useObserver(() => {
+    // Render spinner while fetching data
     if (store.questionsLoading || store.questionCount === 0) {
       return (
         <View style={styles.container}>
@@ -81,6 +86,7 @@ export default function QuizScreen() {
             style={styles.questionContainer}
           >
             <QuestionCard
+              // Question text is HTML encoded, need to decode to display
               text={entities.decode(question.question)}
               questionIndex={currentQuestionIndex}
               questionCount={store.questionCount}

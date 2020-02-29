@@ -36,10 +36,4 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.primary,
     padding: 16,
   },
-  button: {
-    marginTop: 40,
-  },
-  buttonText: {
-    color: theme.colors.primary,
-  },
 })

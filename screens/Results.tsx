@@ -10,6 +10,7 @@ import useNavigation from '../shared/hooks/useNavigation'
 import { useStore } from '../shared/store'
 import theme from '../shared/theme'
 
+import ResultsHeading from '../components/ResultsHeading'
 const entities = new AllHtmlEntities()
 
 export default function ResultsScreen() {
@@ -17,6 +18,7 @@ export default function ResultsScreen() {
   const navigation = useNavigation()
   const confettiRef = useRef<Confetti>(null)
 
+  // Triggers confetti effect on mount when user gets a perfect score
   useEffect(() => {
     if (store.score !== 10) {
       return
@@ -35,32 +37,26 @@ export default function ResultsScreen() {
   return useObserver(() => (
     <View style={styles.container}>
       <Confetti ref={confettiRef} />
-      <SafeAreaView>
-        <View style={styles.resultsContainer}>
-          <Title style={styles.resultsTitle}>Results</Title>
-          <Subheading style={styles.resultsTally}>
-            Score: {store.score} / {store.questionCount}
-          </Subheading>
-        </View>
-      </SafeAreaView>
+      <ResultsHeading score={store.score} questionCount={store.questionCount} />
 
       <FlatList
         data={store.questions}
         keyExtractor={item => item.question}
         renderItem={({ item, index }) => (
-          <View style={{ paddingHorizontal: 16 }}>
+          <View style={styles.resultsList}>
             <GradedQuestionCard
               key={index.toString()}
+              // Question text is HTML encoded, need to decode to display
               text={entities.decode(item.question)}
-              correctAnswer={item?.correct_answer}
+              correctAnswer={item.correct_answer}
               givenAnswer={store.answers[index]}
-              category={item?.category}
+              category={item.category}
             />
           </View>
         )}
         ListFooterComponent={() => (
           <Button
-            style={{ marginHorizontal: 16, marginBottom: 16 }}
+            style={styles.button}
             onPress={() => {
               navigation.navigate('Home')
             }}
@@ -80,14 +76,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: theme.colors.primary,
   },
-  resultsContainer: {
-    alignItems: 'center',
-    paddingVertical: 36,
+  resultsList: {
+    paddingHorizontal: 16,
   },
-  resultsTitle: {
-    color: '#fff',
-  },
-  resultsTally: {
-    color: '#fff',
+  button: {
+    marginHorizontal: 16,
+    marginBottom: 16,
   },
 })

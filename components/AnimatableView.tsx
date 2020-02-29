@@ -1,5 +1,5 @@
 import React, { FunctionComponent, Ref, Component } from 'react'
-import { ViewStyle } from 'react-native'
+import { ViewStyle, Platform } from 'react-native'
 import * as Animatable from 'react-native-animatable'
 
 import { ANIMATION_DURATION } from '../shared/constants'
@@ -28,7 +28,7 @@ class AnimatableView extends Component<Props> {
     return (
       <Animatable.View
         ref={this.props.animationRef}
-        useNativeDriver
+        useNativeDriver={Platform.OS !== 'web'}
         duration={ANIMATION_DURATION}
         {...this.props}
       >
