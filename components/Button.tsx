@@ -1,25 +1,29 @@
 import React, { FunctionComponent, ReactText } from 'react'
-import { StyleSheet } from 'react-native'
+import { StyleSheet, SafeAreaView, ViewStyle } from 'react-native'
 import { Button as PaperButton } from 'react-native-paper'
 
 import theme from '../shared/theme'
 
 type Props = {
   onPress: () => void
+  style?: ViewStyle
   children: ReactText
 }
 
 const Button: FunctionComponent<Props> = ({ onPress, children, ...props }) => {
   return (
-    <PaperButton
-      mode="contained"
-      color="#fff"
-      labelStyle={styles.buttonText}
-      contentStyle={styles.buttonContent}
-      onPress={onPress}
-    >
-      {children}
-    </PaperButton>
+    <SafeAreaView>
+      <PaperButton
+        mode="contained"
+        color="#fff"
+        labelStyle={styles.buttonText}
+        contentStyle={styles.buttonContent}
+        onPress={onPress}
+        {...props}
+      >
+        {children}
+      </PaperButton>
+    </SafeAreaView>
   )
 }
 

@@ -1,8 +1,9 @@
 import React from 'react'
 import { SafeAreaView, StyleSheet, View } from 'react-native'
-import * as Animatable from 'react-native-animatable'
+import AnimatableView from '../components/AnimatableView'
 import Button from '../components/Button'
 import WelcomeHeading from '../components/WelcomeHeading'
+import { ANIMATION_DURATION } from '../shared/constants'
 import useNavigation from '../shared/hooks/useNavigation'
 import theme from '../shared/theme'
 
@@ -13,22 +14,15 @@ export default function HomeScreen() {
     <View style={styles.container}>
       <View style={{ flex: 1 }}>
         <WelcomeHeading />
-        <SafeAreaView>
-          <Animatable.View
-            useNativeDriver
-            duration={300}
-            delay={300}
-            animation="fadeIn"
+        <AnimatableView delay={ANIMATION_DURATION} animation="fadeIn">
+          <Button
+            onPress={() => {
+              navigation.navigate('Quiz')
+            }}
           >
-            <Button
-              onPress={() => {
-                navigation.navigate('Quiz')
-              }}
-            >
-              Begin
-            </Button>
-          </Animatable.View>
-        </SafeAreaView>
+            Begin
+          </Button>
+        </AnimatableView>
       </View>
     </View>
   )

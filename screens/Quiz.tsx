@@ -1,16 +1,16 @@
-import React, { useEffect, useState, useCallback, useRef } from 'react'
-import { StyleSheet, View, SafeAreaView } from 'react-native'
-import { useObserver } from 'mobx-react-lite'
 import { AllHtmlEntities } from 'html-entities'
-import { Title, ActivityIndicator } from 'react-native-paper'
+import { useObserver } from 'mobx-react-lite'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
+import { SafeAreaView, StyleSheet, View } from 'react-native'
 import * as Animatable from 'react-native-animatable'
-
-import theme from '../shared/theme'
-import { useStore } from '../shared/store'
-import useNavigation from '../shared/hooks/useNavigation'
-
+import { ActivityIndicator, Title } from 'react-native-paper'
+import AnimatableView from '../components/AnimatableView'
 import Button from '../components/Button'
 import QuestionCard from '../components/QuestionCard'
+import { ANIMATION_DURATION } from '../shared/constants'
+import useNavigation from '../shared/hooks/useNavigation'
+import { useStore } from '../shared/store'
+import theme from '../shared/theme'
 
 const entities = new AllHtmlEntities()
 
@@ -39,7 +39,7 @@ export default function QuizScreen() {
       }
       titleRef.current.fadeInDown()
       questionRef.current.fadeInUp()
-    }, 300)
+    }, ANIMATION_DURATION)
   }
 
   const answerQuestion = useCallback(
@@ -54,7 +54,7 @@ export default function QuizScreen() {
       animateNextQuestion()
       setTimeout(() => {
         setCurrentQuestionIndex(currentQuestionIndex + 1)
-      }, 300)
+      }, ANIMATION_DURATION)
     },
     [store, currentQuestionIndex],
   )
@@ -72,31 +72,12 @@ export default function QuizScreen() {
     return (
       <View style={styles.container}>
         <SafeAreaView style={styles.safeArea}>
-          {/* 
-              Note: a bug in the latest react-native-animatable version causes
-              Animatable.View ref assignment to fail typescript's type checks.
-              
-              See issue: https://github.com/oblador/react-native-animatable/issues/218
-
-              I've fixed this issue on my own fork:
-              https://github.com/jaydenwindle/react-native-animatable
-
-              TODO: Return to using latest version of react-native-animatable
-              once #218 is fixed.
-          */}
-          <Animatable.View
-            ref={titleRef}
-            useNativeDriver
-            animation="fadeInDown"
-            duration={300}
-          >
+          <AnimatableView animationRef={titleRef} animation="fadeInDown">
             <Title style={styles.title}>{question.category}</Title>
-          </Animatable.View>
-          <Animatable.View
-            ref={questionRef}
-            useNativeDriver
+          </AnimatableView>
+          <AnimatableView
+            animationRef={questionRef}
             animation="fadeInUp"
-            duration={300}
             style={styles.questionContainer}
           >
             <QuestionCard
@@ -104,17 +85,15 @@ export default function QuizScreen() {
               questionIndex={currentQuestionIndex}
               questionCount={store.questionCount}
             />
-          </Animatable.View>
-          <Animatable.View
-            useNativeDriver
+          </AnimatableView>
+          <AnimatableView
             animation="fadeInUp"
-            duration={300}
-            delay={300}
+            delay={ANIMATION_DURATION}
             style={styles.answerContainer}
           >
             <Button onPress={() => answerQuestion('False')}>False</Button>
             <Button onPress={() => answerQuestion('True')}>True</Button>
-          </Animatable.View>
+          </AnimatableView>
         </SafeAreaView>
       </View>
     )

@@ -1,6 +1,6 @@
 import { AllHtmlEntities } from 'html-entities'
 import { useObserver } from 'mobx-react-lite'
-import React, { useEffect, useRef, Component } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { FlatList, SafeAreaView, StyleSheet, View } from 'react-native'
 import Confetti from 'react-native-confetti'
 import { Subheading, Title } from 'react-native-paper'
@@ -35,43 +35,40 @@ export default function ResultsScreen() {
   return useObserver(() => (
     <View style={styles.container}>
       <Confetti ref={confettiRef} />
-      <View style={{ flex: 1 }}>
-        <SafeAreaView>
-          <View style={styles.resultsContainer}>
-            <Title style={styles.resultsTitle}>Results</Title>
-            <Subheading style={styles.resultsTally}>
-              Score: {store.score} / {store.questionCount}
-            </Subheading>
-          </View>
-        </SafeAreaView>
+      <SafeAreaView>
+        <View style={styles.resultsContainer}>
+          <Title style={styles.resultsTitle}>Results</Title>
+          <Subheading style={styles.resultsTally}>
+            Score: {store.score} / {store.questionCount}
+          </Subheading>
+        </View>
+      </SafeAreaView>
 
-        <FlatList
-          data={store.questions}
-          keyExtractor={item => item.question}
-          renderItem={({ item, index }) => (
-            <View style={{ paddingHorizontal: 16 }}>
-              <GradedQuestionCard
-                key={index.toString()}
-                text={entities.decode(item.question)}
-                correctAnswer={item?.correct_answer}
-                givenAnswer={store.answers[index]}
-                category={item?.category}
-              />
-            </View>
-          )}
-          ListFooterComponent={() => (
-            <SafeAreaView style={{ marginHorizontal: 16, paddingBottom: 16 }}>
-              <Button
-                onPress={() => {
-                  navigation.navigate('Home')
-                }}
-              >
-                Play Again?
-              </Button>
-            </SafeAreaView>
-          )}
-        />
-      </View>
+      <FlatList
+        data={store.questions}
+        keyExtractor={item => item.question}
+        renderItem={({ item, index }) => (
+          <View style={{ paddingHorizontal: 16 }}>
+            <GradedQuestionCard
+              key={index.toString()}
+              text={entities.decode(item.question)}
+              correctAnswer={item?.correct_answer}
+              givenAnswer={store.answers[index]}
+              category={item?.category}
+            />
+          </View>
+        )}
+        ListFooterComponent={() => (
+          <Button
+            style={{ marginHorizontal: 16, marginBottom: 16 }}
+            onPress={() => {
+              navigation.navigate('Home')
+            }}
+          >
+            Play Again?
+          </Button>
+        )}
+      />
     </View>
   ))
 }

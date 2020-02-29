@@ -3,11 +3,13 @@ import { StyleSheet, Image } from 'react-native'
 import * as Animatable from 'react-native-animatable'
 import { Subheading, Title } from 'react-native-paper'
 
+import { ANIMATION_DURATION } from '../shared/constants'
+
 const WelcomeTitle = () => (
   <Animatable.View
     useNativeDriver
     animation="fadeInUp"
-    duration={300}
+    duration={ANIMATION_DURATION}
     style={styles.animatedContainer}
   >
     <Image source={require('../assets/logo-white.png')} style={styles.logo} />
