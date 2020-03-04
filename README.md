@@ -1,4 +1,4 @@
-# TenTrivia - A simple, fun triva app for web and mobile
+# TenTrivia - A simple triva app for web and mobile
 
 ![](/cover.png)
 
